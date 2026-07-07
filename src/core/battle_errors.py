@@ -1,0 +1,2 @@
+class BattleError(ValueError):
+    pass
