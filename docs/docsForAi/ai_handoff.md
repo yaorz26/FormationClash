@@ -7,14 +7,15 @@
 - 项目是一个本地 Python + Pygame 双人战棋/卡牌式对战游戏。
 - 入口文件是 `main.py`，应用主类在 `src/app.py`。
 - 当前主要玩法流程为：主页 -> 选角 -> 排阵 -> 战斗 -> 结算；另有百科大全、设置、测试/修改器相关能力。
-- 需求文档集中在 `require/`：
-  - `require.md`：基础规则、最初关键词与角色/职业说明。
-  - `require2.md`：界面与后续优化需求。
-  - `require3.md`：攻击、受伤、死亡、依次结算等关键流程。
-  - `newCharacter.md`、`newCharacter2.md`、`newCharacter3.md`：新增角色、关键词和机制解释。
-  - `tester.md`：测试/修改器能力。
-  - `bug.md`：当前或最近的修复项。
-  - `development_process.md`：阶段化开发记录。
+- 需求文档集中在 `docs/`：
+  - `docs/baseRequire/require.md`：基础规则、最初关键词与角色/职业说明。
+  - `docs/baseRequire/require2.md`：界面与后续优化需求。
+  - `docs/baseRequire/require3.md`：攻击、受伤、死亡、依次结算等关键流程。
+  - `docs/newRequire/newCharacter.md`、`docs/newRequire/newCharacter2.md`、`docs/newRequire/newCharacter3.md`：新增角色、关键词和机制解释。
+  - `docs/newRequire/tester.md`：测试/修改器能力。
+  - `docs/newRequire/bug.md`：当前或最近的修复项。
+  - `docs/newRequire/development_process.md`：阶段化开发记录。
+  - `docs/newRequire/animation.md`：动画相关需求。
 - 用户通常用中文描述需求，交付文档和解释也应优先使用中文。
 
 ## 2. 运行与测试
@@ -41,8 +42,8 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 .\.venv\Scripts\python.exe -B -m unittest src.tests.test_tester_modifier
 ```
 
-- 最近一次已知完整测试状态：实现 `newCharacter3.md` 中无畏、狂暴炸弹师、重力/虚弱/激怒、章鱼等新角色与机制后，完整测试为 `180 tests OK`。
-- 本工作区当前不是 git 仓库，`git status` 会失败；不要依赖 git diff 来判断变更。
+- 最近一次已知完整测试状态：实现 `docs/newRequire/newCharacter3.md` 中无畏、狂暴炸弹师、重力/虚弱/激怒、章鱼等新角色与机制后，完整测试为 `180 tests OK`。
+- 本工作区已使用 git 管理，可通过 `git log` 追踪变更历史。
 
 ## 3. 代码结构
 
@@ -81,8 +82,8 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 ### 测试层
 
 - `src/tests/test_battle_rules.py`：基础战斗规则。
-- `src/tests/test_new_characters.py`：`newCharacter.md`、`newCharacter2.md` 中大量角色机制。
-- `src/tests/test_new_character3.py`：`newCharacter3.md` 相关机制。
+- `src/tests/test_new_characters.py`：`docs/newRequire/newCharacter.md`、`docs/newRequire/newCharacter2.md` 中大量角色机制。
+- `src/tests/test_new_character3.py`：`docs/newRequire/newCharacter3.md` 相关机制。
 - `src/tests/test_encyclopedia_screen.py`：百科 UI 与显示规则。
 - `src/tests/test_battle_ui_layout.py`：战斗界面布局和部分交互。
 - `src/tests/test_tester_modifier.py`：修改器能力。
@@ -126,7 +127,7 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 
 ### 攻击结算
 
-根据 `require3.md`，攻击造成伤害结算流程为：
+根据 `docs/baseRequire/require3.md`，攻击造成伤害结算流程为：
 
 1. 确定攻击者与被攻击目标。
 2. 验证目标合法性。
@@ -140,7 +141,7 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 
 ### 受伤结算
 
-当前规则以 `require3.md` 为准：
+当前规则以 `docs/baseRequire/require3.md` 为准：
 
 1. 先计算免疫。
 2. 再计算护盾；护盾在免疫之后、屏障和抵御之前结算。
@@ -268,7 +269,7 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 
 ## 11. 测试/修改器上下文
 
-- 修改器来自 `require/tester.md`，相关代码主要在 `battle_debug.py` 和 `game_screen.py`。
+- 修改器来自 `docs/newRequire/tester.md`，相关代码主要在 `battle_debug.py` 和 `game_screen.py`。
 - UI 层修改器代码已拆到 `src/ui/game_screen_tester.py`；核心调试能力仍在 `src/core/battle_debug.py`。
 - 修改器应能便捷选择角色、debuff、buff，之前已加入下拉或类似选择控件。
 - 修改器可施加 debuff，也可施加 buff。
@@ -276,7 +277,7 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 
 ## 12. 接手开发建议
 
-1. 先读最新用户打开或指定的需求文件，例如 `require/bug.md` 或 `require/newCharacter3.md`。
+1. 先读最新用户打开或指定的需求文件，例如 `docs/newRequire/bug.md` 或 `docs/newRequire/newCharacter3.md`。
 2. 再用 `rg` 搜索相关角色 id、技能 id、effect id，确认已有实现位置。
 3. 新角色优先以数据驱动方式加入 `characters.py`，只有确实需要特殊行为时再改 `battle_*.py`。
 4. 新内部效果 id 如果不是用户明确要求显示的关键词，默认不要在百科关键词列表显示。
@@ -288,4 +289,4 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 ## 13. 当前待确认事项
 
 - 项目中存在 `__pycache__` 文件，但它们不是源代码；接手时可以忽略。
-- 因当前工作区不是 git 仓库，交接时无法依靠提交历史追踪来源，需要以需求文档、测试和源码为准。
+- 因当前工作区已使用 git 管理，可通过提交历史追踪变更来源；但仍需以需求文档、测试和源码为准。

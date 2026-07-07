@@ -183,8 +183,8 @@ CHARACTER_MECHANIC_DETAILS: dict[str, tuple[str, ...]] = {
 | 测试文件 | 覆盖范围 |
 |----------|----------|
 | `test_battle_rules.py` | 基础战斗规则 |
-| `test_new_characters.py` | `newCharacter.md`、`newCharacter2.md` 角色机制 |
-| `test_new_character3.py` | `newCharacter3.md` 角色机制 |
+| `test_new_characters.py` | `docs/newRequire/newCharacter.md`、`docs/newRequire/newCharacter2.md` 角色机制 |
+| `test_new_character3.py` | `docs/newRequire/newCharacter3.md` 角色机制 |
 | `test_encyclopedia_screen.py` | 百科 UI 与显示规则 |
 | `test_battle_ui_layout.py` | 战斗界面布局和交互 |
 | `test_tester_modifier.py` | 修改器能力 |
@@ -287,7 +287,7 @@ $env:PYTHONDONTWRITEBYTECODE='1'; .\.venv\Scripts\python.exe -B -m unittest disc
 
 1. **新增角色完成后**：如果本次实现中出现了新的稳定模式、约定或机制模板，且判断其未来大概率复用，应**主动询问用户**是否需要更新此 SKILL.md。
 2. **发现 skill 与实际代码不一致时**：如果按照 skill 指引操作后发现代码结构已变化，应**主动标记**过时内容并建议更新。
-3. **ai_handoff.md 更新后**：如果 `require/ai_handoff.md` 中新增了与角色开发相关的稳定约定，应考虑同步到此 skill。
+3. **ai_handoff.md 更新后**：如果 `docs/docsForAi/ai_handoff.md` 中新增了与角色开发相关的稳定约定，应考虑同步到此 skill。
 
 ### 更新原则
 
